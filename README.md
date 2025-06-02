@@ -72,11 +72,6 @@ Visit: `http://localhost:5173`
 | `npm run build` | Build for production           |
 | `npm run lint`  | Run ESLint for code formatting |
 
----
-
-## 📸 Screenshots
-
-> *Add screenshots or UI previews here once the app is ready*
 
 ---
 
