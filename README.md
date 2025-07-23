@@ -84,5 +84,5 @@ This project is open source under the [MIT License](LICENSE).
 ## 👤 Author
 
 * Easwaramurthy P
-* [LinkedIn](https://linkedin.com/in/your-profile)
-* [GitHub](https://github.com/your-username)
+* [LinkedIn]([https://linkedin.com/in/your-profile](https://www.linkedin.com/in/easwaramurthy-p-8b561a294/))
+* [GitHub]([https://github.com/your-username](https://github.com/Easwarp45))
