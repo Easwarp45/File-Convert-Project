@@ -83,6 +83,6 @@ This project is open source under the [MIT License](LICENSE).
 
 ## 👤 Author
 
-* **Your Name**
+* Easwaramurthy P
 * [LinkedIn](https://linkedin.com/in/your-profile)
 * [GitHub](https://github.com/your-username)
