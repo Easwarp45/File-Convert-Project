@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Converter UI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Any2Any</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><button id="themeToggle">🌙</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="upload-section">
+      <h1>Convert Anything to Everything</h1>
+      <p>Upload. Convert. Download. All in one place.</p>
+      <div class="upload-box" id="uploadBox">
+        <p>Drag & Drop or <button id="browseBtn">Browse Files</button></p>
+        <input type="file" id="fileInput" hidden />
+      </div>
+
+      <div class="file-preview" id="filePreview"></div>
+
+      <div class="format-selection">
+        <h3>Select Output Formats:</h3>
+        <div class="formats">
+          <label><input type="checkbox" value="pdf" /> PDF</label>
+          <label><input type="checkbox" value="docx" /> DOCX</label>
+          <label><input type="checkbox" value="jpg" /> JPG</label>
+          <label><input type="checkbox" value="pptx" /> PPTX</label>
+          <label><input type="checkbox" value="txt" /> TXT</label>
+        </div>
+      </div>
+
+      <button id="convertBtn" class="convert-btn">Convert</button>
+
+      <div class="download-section" id="downloadSection"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 FileMorph. Built with ❤️ by Easwar.</p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
+
+    const browseBtn = document.getElementById('browseBtn');
+    const fileInput = document.getElementById('fileInput');
+    const filePreview = document.getElementById('filePreview');
+    const uploadBox = document.getElementById('uploadBox');
+
+
+    browseBtn.addEventListener('click', () => fileInput.click());
+    uploadBox.addEventListener('click', () => fileInput.click());
+
+    // Drag and drop support
+    uploadBox.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadBox.classList.add('dragover');
+    });
+    uploadBox.addEventListener('dragleave', (e) => {
+      e.preventDefault();
+      uploadBox.classList.remove('dragover');
+    });
+    uploadBox.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadBox.classList.remove('dragover');
+      const files = e.dataTransfer.files;
+      if (files && files[0]) {
+        fileInput.files = files;
+        showFilePreview(files[0]);
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        showFilePreview(file);
+      }
+    });
+
+    function showFilePreview(file) {
+      filePreview.innerHTML = `<p><strong>File:</strong> ${file.name} (${(file.size / 1024).toFixed(2)} KB)</p><button onclick=\"fileInput.value=null;filePreview.innerHTML='';\">Remove</button>`;
+    }
+
+    const convertBtn = document.getElementById('convertBtn');
+    const downloadSection = document.getElementById('downloadSection');
+
+    convertBtn.addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('.formats input:checked');
+      const file = fileInput.files[0];
+      if (!file) return alert('Please upload a file.');
+      if (checkboxes.length === 0) return alert('Select at least one format.');
+
+      downloadSection.innerHTML = '<h3>Download Files:</h3>';
+      checkboxes.forEach(cb => {
+        const fakeLink = document.createElement('a');
+        fakeLink.href = '#';
+        fakeLink.textContent = `${file.name.split('.')[0]}.${cb.value}`;
+        fakeLink.className = 'download-link';
+        downloadSection.appendChild(fakeLink);
+      });
+    });
+  </script>
+</body>
+</html>

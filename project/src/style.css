@@ -1,0 +1,220 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, #f6f8fb, #e0ecf7);
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background: linear-gradient(120deg, #1c1c1e, #2b2b2e);
+  color: #f0f0f0;
+}
+
+/* Header */
+header {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+}
+
+.nav-links button {
+  font-size: 1.2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Upload Section */
+.upload-section {
+  padding: 3rem 2rem;
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+}
+
+.upload-section h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.upload-section p {
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.upload-box {
+  border: 2px dashed #aaa;
+  border-radius: 15px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.upload-box.dragover {
+  border-color: #3f8efc;
+  background: rgba(63, 142, 252, 0.2);
+}
+
+.upload-box button {
+  margin-left: 10px;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background: #3f8efc;
+  color: white;
+  cursor: pointer;
+}
+
+/* File Preview */
+.file-preview {
+  margin: 1rem 0;
+}
+
+.file-preview button {
+  margin-top: 0.5rem;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Format Selection */
+.format-selection h3 {
+  margin-bottom: 0.5rem;
+}
+
+.formats {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.formats label {
+  background: rgba(255, 255, 255, 0.4);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* Convert Button */
+.convert-btn {
+  margin-top: 2rem;
+  background: #3f8efc;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.convert-btn:hover {
+  background: #1e6be6;
+}
+
+/* Download Section */
+.download-section {
+  margin-top: 2rem;
+}
+
+.download-link {
+  display: inline-block;
+  margin: 0.3rem 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #dfeeff;
+  color: #333;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+/* Links in dark mode */
+body.dark-mode a {
+  color: #66b2ff;
+}
+
+/* Button and label text color */
+body.dark-mode .upload-box,
+body.dark-mode .formats label {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+  border-color: #888;
+}
+
+body.dark-mode .upload-box.dragover {
+  border-color: #66b2ff;
+  background: rgba(102, 178, 255, 0.2);
+}
+
+/* Convert & Remove buttons */
+body.dark-mode .convert-btn,
+body.dark-mode .file-preview button {
+  background: #007aff;
+  color: white;
+}
+
+body.dark-mode .convert-btn:hover {
+  background: #005fcc;
+}
+
+body.dark-mode .download-link {
+  background: rgba(102, 178, 255, 0.2);
+  color: #ffffff;
+}
