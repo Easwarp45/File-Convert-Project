@@ -32,16 +32,17 @@
       <div class="format-selection">
         <h3>Select Output Formats:</h3>
         <div class="formats">
-          <label><input type="checkbox" value="pdf" /> PDF</label>
-          <label><input type="checkbox" value="docx" /> DOCX</label>
-          <label><input type="checkbox" value="jpg" /> JPG</label>
-          <label><input type="checkbox" value="pptx" /> PPTX</label>
-          <label><input type="checkbox" value="txt" /> TXT</label>
+          <label><input type="radio" name="format" value="pdf" /> PDF</label>
+          <label><input type="radio" name="format" value="docx" /> DOCX</label>
+          <label><input type="radio" name="format" value="jpg" /> JPG</label>
+          <label><input type="radio" name="format" value="pptx" /> PPTX</label>
+          <label><input type="radio" name="format" value="txt" /> TXT</label>
         </div>
       </div>
 
       <div class="buttons">
-        <button id="convertBtn" class="blob-btn">
+        <button class="convert-btn blob-btn">
+          Convert
           <span class="blob-btn__inner">
             <span class="blob-btn__blobs">
               <span class="blob-btn__blob"></span>
@@ -50,15 +51,7 @@
               <span class="blob-btn__blob"></span>
             </span>
           </span>
-          <span>Convert</span>
         </button>
-        <svg style="display: none;">
-          <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-            <feBlend in="SourceGraphic" in2="goo" />
-          </filter>
-        </svg>
       </div>
       <div class="download-section" id="downloadSection"></div>
     </section>
@@ -67,6 +60,17 @@
   <footer>
     <p>&copy; 2025 Any2Any. Built with ❤️ by Easwar.</p>
   </footer>
+
+  <!-- SVG filter for blob button -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none;">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+      </filter>
+    </defs>
+  </svg>
 
   <script>
     const themeToggle = document.getElementById('themeToggle');
@@ -112,48 +116,22 @@
       filePreview.innerHTML = `<p><strong>File:</strong> ${file.name} (${(file.size / 1024).toFixed(2)} KB)</p><button onclick="fileInput.value=null;filePreview.innerHTML='';">Remove</button>`;
     }
 
-    const convertBtn = document.getElementById('convertBtn');
+    const convertBtn = document.querySelector('.convert-btn');
     const downloadSection = document.getElementById('downloadSection');
 
     convertBtn.addEventListener('click', () => {
-      const checkboxes = document.querySelectorAll('.formats input:checked');
+      const selectedFormat = document.querySelector('.formats input:checked');
       const file = fileInput.files[0];
       if (!file) return alert('Please upload a file.');
-      if (checkboxes.length === 0) return alert('Select at least one format.');
+      if (!selectedFormat) return alert('Select an output format.');
 
-      downloadSection.innerHTML = '<h3>Download Files:</h3>';
-      checkboxes.forEach((cb, i) => {
-        const fakeLink = document.createElement('a');
-        fakeLink.href = '#';
-        fakeLink.textContent = `${file.name.split('.')[0]}.${cb.value}`;
-        fakeLink.className = 'download-link';
-        fakeLink.style.animationDelay = `${i * 0.08 + 0.1}s`;
-        downloadSection.appendChild(fakeLink);
-      });
+      downloadSection.innerHTML = '<h3>Download File:</h3>';
+      const fakeLink = document.createElement('a');
+      fakeLink.href = '#';
+      fakeLink.textContent = `${file.name.split('.')[0]}.${selectedFormat.value}`;
+      fakeLink.className = 'download-link';
+      downloadSection.appendChild(fakeLink);
     });
-    <div class="buttons">
-  <button class="blob-btn">
-    Blob Button
-    <span class="blob-btn__inner">
-      <span class="blob-btn__blobs">
-        <span class="blob-btn__blob"></span>
-        <span class="blob-btn__blob"></span>
-        <span class="blob-btn__blob"></span>
-        <span class="blob-btn__blob"></span>
-      </span>
-    </span>
-  </button>
-  <br/>
-
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <defs>
-    <filter id="goo">
-      <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
-      <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-    </filter>
-  </defs>
-</svg>
   </script>
 </body>
 </html>
